@@ -1,13 +1,16 @@
 # Adapted from Clickjacking_Tester.py by D4vinci
 
-from urllib.request import urlopen
+try:
+    from urllib.request import urlopen
+except ImportError:
+    from urllib2 import urlopen
 from sys import argv, exit
 
 __author__ = 'thatsjet'
 
 def getHeaders(url):
     try:
-        if "http" not in url: url = "http://" + url
+        if "http" not in url: url = "https://" + url
         data = urlopen(url)
         headers = data.info()
         return headers
